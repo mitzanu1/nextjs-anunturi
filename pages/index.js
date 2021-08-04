@@ -14,12 +14,11 @@ const HomePage = (props) => {
 
 export default HomePage;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getEventsData();
   return {
     props: {
       events: data,
     },
-    revalidate: 1,
   };
 }
