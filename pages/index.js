@@ -15,7 +15,9 @@ const HomePage = (props) => {
 export default HomePage;
 
 export async function getStaticProps() {
-  const response = await fetch("http://localhost:3000/api/getAnunt");
+  const response = await fetch(
+    "https://nextjs-anunturi.vercel.app//api/getAnunt"
+  );
   const data = await response.json();
   return {
     props: {
