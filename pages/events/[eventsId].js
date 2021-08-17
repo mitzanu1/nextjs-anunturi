@@ -5,8 +5,7 @@ import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/ui/error-alert";
 import Button from "../../components/ui/button";
-import { getEventsData } from "../../firebase/firebase";
-import axios from "axios";
+import { getAnunturi } from "../../api_utils/dbApi";
 
 const EventDetail = (props) => {
   const router = useRouter();
@@ -48,16 +47,8 @@ const EventDetail = (props) => {
 export default EventDetail;
 
 export async function getStaticPaths() {
-  var res = await fetch("https://nextjs-anunturi.vercel.app/api/getAnunt", {
-    method: "GET",
-    headers: {
-      // update with your user-agent
-      "User-Agent":
-        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36",
-      Accept: "application/json; charset=UTF-8",
-    },
-  });
-  const data = await res.json();
+  const data = await getAnunturi();
+
   const pathsArr = data.map((item) => ({
     params: { eventsId: item._id },
   }));
@@ -68,8 +59,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-  var res = await fetch("https://nextjs-anunturi.vercel.app/api/getAnunt");
-  const data = await res.json();
+  const data = await getAnunturi();
+
   return {
     props: {
       events: data,
