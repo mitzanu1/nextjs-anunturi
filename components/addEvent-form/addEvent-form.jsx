@@ -39,7 +39,7 @@ function EventForm() {
       anunt.image &&
       anunt.city
     ) {
-      axios.post("/api/anunt", anunt);
+      axios.post("/api/getAnunt", anunt);
       router.push("/");
     }
   };
