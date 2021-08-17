@@ -47,7 +47,15 @@ const EventDetail = (props) => {
 export default EventDetail;
 
 export async function getStaticPaths() {
-  const data = await getAnunturi();
+  var res = await fetch("https://nextjs-anunturi.vercel.app/api/anunt", {
+    method: "GET",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "User-Agent": "*",
+    },
+  });
+
+  const data = await res.json();
 
   const pathsArr = data.map((item) => ({
     params: { eventsId: item._id },
@@ -59,7 +67,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-  const data = await getAnunturi();
+  var res = await fetch("https://nextjs-anunturi.vercel.app/api/anunt", {
+    method: "GET",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "User-Agent": "*",
+    },
+  });
+
+  const data = await res.json();
 
   return {
     props: {

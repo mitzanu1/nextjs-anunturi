@@ -63,7 +63,15 @@ export default EventSlug;
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  const data = await getAnunturi();
+  var res = await fetch("https://nextjs-anunturi.vercel.app/api/anunt", {
+    method: "GET",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "User-Agent": "*",
+    },
+  });
+
+  const data = await res.json();
 
   const filterData = params.slug;
   const filterdYear = +filterData[0];
