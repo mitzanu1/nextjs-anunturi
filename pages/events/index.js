@@ -23,7 +23,7 @@ const EventsPage = (props) => {
 export default EventsPage;
 
 export async function getStaticProps() {
-  var res = await axios.get("http://localhost:3000/api/getAnunt", {
+  var res = await axios.get("https://nextjs-anunturi.vercel.app/api/getAnunt", {
     headers: {
       Accept: "application/json, text/plain, */*",
       "User-Agent": "*",

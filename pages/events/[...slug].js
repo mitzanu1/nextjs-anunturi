@@ -64,7 +64,7 @@ export default EventSlug;
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  var res = await axios.get("http://localhost:3000/api/getAnunt", {
+  var res = await axios.get("https://nextjs-anunturi.vercel.app/api/getAnunt", {
     headers: {
       Accept: "application/json, text/plain, */*",
       "User-Agent": "*",
