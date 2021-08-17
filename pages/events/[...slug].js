@@ -20,10 +20,10 @@ const EventSlug = (props) => {
     return (
       <Fragment>
         <ErrorAlert>
-          <p>Invalid filter. Please adjust your values.</p>
+          <p>Filtru invalid</p>
         </ErrorAlert>
         <div className="center">
-          <Button link="/events">Show All Events</Button>
+          <Button link="/events">Arata anunturi</Button>
         </div>
       </Fragment>
     );
@@ -41,10 +41,10 @@ const EventSlug = (props) => {
     return (
       <Fragment>
         <ErrorAlert>
-          <p>No events found for the chosen filter.</p>
+          <p>Nu au fost gasite anunturi pentru filtrul selectat.</p>
         </ErrorAlert>
         <div className="center">
-          <Button link="/events">Show All Events</Button>
+          <Button link="/events">Arata anunturi</Button>
         </div>
       </Fragment>
     );

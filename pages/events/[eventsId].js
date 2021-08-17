@@ -17,10 +17,10 @@ const EventDetail = (props) => {
     return (
       <Fragment>
         <ErrorAlert>
-          <p>No event found</p>
+          <p>Nu au fost gasite anunturi</p>
         </ErrorAlert>
         <div className="center">
-          <Button link="/events">Show All Events</Button>
+          <Button link="/events">Arata anunturi</Button>
         </div>
       </Fragment>
     );
