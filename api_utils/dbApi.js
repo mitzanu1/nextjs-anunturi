@@ -10,6 +10,6 @@ export async function getAnunturi() {
   });
 
   const data = await res.json();
-
+  const a = "";
   return data;
 }
