@@ -5,6 +5,7 @@ import ResultsTitle from "../../components/events/results-title";
 import Button from "../../components/ui/button";
 import ErrorAlert from "../../components/ui/error-alert";
 import { getEventsData } from "../../firebase/firebase";
+import axios from "axios";
 
 const EventSlug = (props) => {
   const router = useRouter();
@@ -63,7 +64,13 @@ export default EventSlug;
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  const data = await getEventsData();
+  var res = await axios.get("http://localhost:3000/api/getAnunt", {
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "User-Agent": "*",
+    },
+  });
+  const data = res.data;
   const filterData = params.slug;
   const filterdYear = +filterData[0];
   const filterdMonth = +filterData[1];

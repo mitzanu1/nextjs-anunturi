@@ -6,12 +6,13 @@ import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/ui/error-alert";
 import Button from "../../components/ui/button";
 import { getEventsData } from "../../firebase/firebase";
+import axios from "axios";
 
 const EventDetail = (props) => {
   const router = useRouter();
   const eventId = router.query.eventsId;
-  const event = props.events.filter((event) => event.id === eventId)[0];
-  const { titlu, date, contact, imagine, detalii, pret, oras } = event;
+  const event = props.events.filter((event) => event._id === eventId)[0];
+  const { title, updatedAt, contact, image, description, price, city } = event;
 
   if (!event) {
     return (
@@ -28,17 +29,17 @@ const EventDetail = (props) => {
 
   return (
     <Fragment>
-      <EventSummary title={titlu} />
+      <EventSummary title={title} />
       <EventLogistics
-        date={date}
+        date={updatedAt}
         tel={contact}
-        image={imagine}
-        imageAlt={titlu}
-        price={pret}
-        city={oras}
+        image={image}
+        imageAlt={title}
+        price={price}
+        city={city}
       />
       <EventContent>
-        <p>{detalii}</p>
+        <p>{description}</p>
       </EventContent>
     </Fragment>
   );
@@ -47,9 +48,15 @@ const EventDetail = (props) => {
 export default EventDetail;
 
 export async function getStaticPaths() {
-  const data = await getEventsData();
+  var res = await axios.get("http://localhost:3000/api/getAnunt", {
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "User-Agent": "*",
+    },
+  });
+  const data = res.data;
   const pathsArr = data.map((item) => ({
-    params: { eventsId: item.id },
+    params: { eventsId: item._id },
   }));
   return {
     paths: pathsArr,
@@ -58,7 +65,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-  const data = await getEventsData();
+  var res = await axios.get("http://localhost:3000/api/getAnunt", {
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "User-Agent": "*",
+    },
+  });
+  const data = res.data;
   return {
     props: {
       events: data,

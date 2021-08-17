@@ -3,6 +3,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import EventList from "../../components/events/event-list";
 import EventsSearch from "../../components/events/events-search";
 import { getEventsData } from "../../firebase/firebase";
+import axios from "axios";
 
 const EventsPage = (props) => {
   const allEvents = props.events;
@@ -22,7 +23,13 @@ const EventsPage = (props) => {
 export default EventsPage;
 
 export async function getStaticProps() {
-  const data = await getEventsData();
+  var res = await axios.get("http://localhost:3000/api/getAnunt", {
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "User-Agent": "*",
+    },
+  });
+  const data = res.data;
   return {
     props: {
       events: data,
