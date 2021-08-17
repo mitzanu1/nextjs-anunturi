@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
 import EventList from "../components/events/event-list";
-import { getEventsData } from "../firebase/firebase";
-import axios from "axios";
 
 const HomePage = (props) => {
   const featuredEvents = props.events;
@@ -16,7 +13,7 @@ export default HomePage;
 
 export async function getStaticProps() {
   const response = await fetch(
-    "https://nextjs-anunturi.vercel.app//api/getAnunt"
+    "https://nextjs-anunturi.vercel.app/api/getAnunt"
   );
   const data = await response.json();
   return {
