@@ -1,5 +1,5 @@
 export async function getAnunturi() {
-  const localhost = "http://localhost:3000/api/getAnunt/api/getAnunt";
+  const localhost = "http://localhost:3000/api/getAnunt";
   const vercel = "https://nextjs-anunturi.vercel.app/api/getAnunt";
   var res = await fetch(localhost, {
     method: "GET",
@@ -8,6 +8,6 @@ export async function getAnunturi() {
       "User-Agent": "*",
     },
   });
-
-  return res;
+  const data = res.json();
+  return data;
 }
