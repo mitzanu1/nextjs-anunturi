@@ -6,6 +6,7 @@ import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/ui/error-alert";
 import Button from "../../components/ui/button";
 import { getAnunturi } from "../../api_utils/dbApi";
+import axios from "axios";
 
 const EventDetail = (props) => {
   const router = useRouter();
@@ -47,7 +48,10 @@ const EventDetail = (props) => {
 export default EventDetail;
 
 export async function getStaticPaths() {
-  const data = await getAnunturi();
+  // const data = await getAnunturi();
+  const { data } = await axios.get(
+    "https://nextjs-anunturi.vercel.app/api/getAnunt"
+  );
 
   const pathsArr = data.map((item) => ({
     params: { eventsId: item._id },
@@ -59,7 +63,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-  const data = await getAnunturi();
+  // const data = await getAnunturi();
+  const { data } = await axios.get(
+    "https://nextjs-anunturi.vercel.app/api/getAnunt"
+  );
 
   return {
     props: {

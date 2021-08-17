@@ -5,6 +5,7 @@ import ResultsTitle from "../../components/events/results-title";
 import Button from "../../components/ui/button";
 import ErrorAlert from "../../components/ui/error-alert";
 import { getAnunturi } from "../../api_utils/dbApi";
+import axios from "axios";
 
 const EventSlug = (props) => {
   const router = useRouter();
@@ -63,7 +64,10 @@ export default EventSlug;
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  const data = await getAnunturi();
+  // const data = await getAnunturi();
+  const { data } = await axios.get(
+    "https://nextjs-anunturi.vercel.app/api/getAnunt"
+  );
 
   const filterData = params.slug;
   const filterdYear = +filterData[0];
