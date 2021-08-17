@@ -11,23 +11,23 @@ mongoose.connect(dbUrl, {
 });
 
 async function handler(req, res) {
-  if (req.method === "POST") {
-    const anunt = new Anunt({
-      title: req.body.title,
-      image: req.body.image,
-      category: req.body.category,
-      description: req.body.description,
-      city: req.body.city,
-      price: req.body.price,
-      contact: req.body.contact,
-    });
-    const createdAnunt = await anunt.save();
-    res.status(201).send({ createdAnunt });
-  }
-  if (req.method === "GET") {
-    const anunturi = await Anunt.find();
-    res.status(200).json(anunturi);
-  }
+  // if (req.method === "POST") {
+  //   const anunt = new Anunt({
+  //     title: req.body.title,
+  //     image: req.body.image,
+  //     category: req.body.category,
+  //     description: req.body.description,
+  //     city: req.body.city,
+  //     price: req.body.price,
+  //     contact: req.body.contact,
+  //   });
+  //   const createdAnunt = await anunt.save();
+  //   res.status(201).send({ createdAnunt });
+  // }
+  // if (req.method === "GET") {
+  // }
+  const anunturi = await Anunt.find();
+  res.status(200).json(anunturi);
 }
 
 export default handler;
