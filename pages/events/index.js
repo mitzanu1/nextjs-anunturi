@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
-import EventList from "../components/events/event-list";
-import EventsSearch from "../components/events/events-search";
+import EventList from "../../components/events/event-list";
+import EventsSearch from "../../components/events/events-search";
 import { getAnunturi } from "../api_utils/dbApi";
 
 const EventsPage = (props) => {
