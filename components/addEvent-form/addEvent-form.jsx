@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import classes from "./addEvent.module.css";
-import { addEvent } from "../../firebase/firebase";
 import { useRouter } from "next/router";
 import Button from "../ui/button";
 import { uploadImage } from "../../firebase/firebase";
@@ -40,8 +39,7 @@ function EventForm() {
       anunt.image &&
       anunt.city
     ) {
-      // addEvent(anunt);
-      axios.post("/api/postAnunt", anunt);
+      axios.post("/api/anunt", anunt);
       router.push("/");
     }
   };
