@@ -3,19 +3,25 @@ import EventItem from "./event-item";
 import classes from "./event-list.module.css";
 
 const EventList = (props) => {
-  const { items } = props;
+  const items = props.items || [];
   return (
     <ul className={classes.list}>
       {items.map((event) => {
-        const { contact, id, pret, titlu, imagine, date, oras } = event;
+        const { contact, _id, price, title, image, createdAt, city } = event;
+        const date = new Date(createdAt).toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+
         return (
           <EventItem
-            key={id}
-            id={id}
-            name={titlu}
-            location={oras}
-            price={pret}
-            image={imagine}
+            key={_id}
+            id={_id}
+            name={title}
+            location={city}
+            price={price}
+            image={image}
             date={date}
             tel={contact}
           />

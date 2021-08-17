@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import EventList from "../../components/events/event-list";
 import EventsSearch from "../../components/events/events-search";
 import { getEventsData } from "../../firebase/firebase";

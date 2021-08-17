@@ -4,6 +4,7 @@ import { addEvent } from "../../firebase/firebase";
 import { useRouter } from "next/router";
 import Button from "../ui/button";
 import { uploadImage } from "../../firebase/firebase";
+import axios from "axios";
 
 function EventForm() {
   const [preview, setPreview] = useState();
@@ -19,31 +20,28 @@ function EventForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const imageUrl = await uploadImage(image);
-    console.log(imageUrl);
+
     const anunt = {
-      titlu: titluRef.current.value,
-      oras: orasRef.current.value,
+      title: titluRef.current.value,
+      city: orasRef.current.value,
       contact: contactRef.current.value,
-      pret: pretRef.current.value,
-      categorie: categorieRef.current.value,
-      detalii: detaliiRef.current.value,
-      imagine: imageUrl,
-      date: new Date(Date.now()).toLocaleDateString("en-US", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      }),
+      price: pretRef.current.value,
+      category: categorieRef.current.value,
+      description: detaliiRef.current.value,
+      image: imageUrl,
     };
 
     if (
-      anunt.titlu &&
+      anunt.title &&
       anunt.contact &&
-      anunt.pret &&
-      anunt.categorie &&
-      anunt.detalii &&
-      anunt.imagine
+      anunt.price &&
+      anunt.category &&
+      anunt.description &&
+      anunt.image &&
+      anunt.city
     ) {
-      addEvent(anunt);
+      // addEvent(anunt);
+      axios.post("/api/postAnunt", anunt);
       router.push("/");
     }
   };
