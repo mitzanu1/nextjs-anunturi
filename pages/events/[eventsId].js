@@ -48,13 +48,8 @@ const EventDetail = (props) => {
 export default EventDetail;
 
 export async function getStaticPaths() {
-  var res = await axios.get("https://nextjs-anunturi.vercel.app/api/getAnunt", {
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "User-Agent": "*",
-    },
-  });
-  const data = res.data;
+  var res = await fetch("https://nextjs-anunturi.vercel.app/api/getAnunt");
+  const data = await res.json();
   const pathsArr = data.map((item) => ({
     params: { eventsId: item._id },
   }));
@@ -65,13 +60,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-  var res = await axios.get("https://nextjs-anunturi.vercel.app/api/getAnunt", {
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "User-Agent": "*",
-    },
-  });
-  const data = res.data;
+  var res = await fetch("https://nextjs-anunturi.vercel.app/api/getAnunt");
+  const data = await res.json();
   return {
     props: {
       events: data,
