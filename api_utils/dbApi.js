@@ -1,7 +1,7 @@
 export async function getAnunturi() {
   const localhost = "http://localhost:3000/api/anunt";
   const vercel = "https://nextjs-anunturi.vercel.app/api/anunt";
-  var res = await fetch(localhost, {
+  var res = await fetch(vercel, {
     method: "GET",
     headers: {
       Accept: "application/json, text/plain, */*",
