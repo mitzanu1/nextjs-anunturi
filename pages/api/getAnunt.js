@@ -12,7 +12,7 @@ mongoose.connect(dbUrl, {
 
 async function handler(req, res) {
   const anunturi = await Anunt.find({});
-  res.status(200).json(anunturi);
+  res.status(200).json({ data: anunturi });
 }
 
 export default handler;

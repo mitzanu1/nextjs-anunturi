@@ -16,7 +16,7 @@ export default HomePage;
 
 export async function getStaticProps() {
   const data = await getAnunturi();
-  console.log(data);
+
   // const { data } = await axios.get(
   //   "https://nextjs-anunturi.vercel.app/api/getAnunt"
   // );
