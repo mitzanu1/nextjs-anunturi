@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
-import EventList from "../components/events/event-list";
-import ResultsTitle from "../components/events/results-title";
-import Button from "../components/ui/button";
-import ErrorAlert from "../components/ui/error-alert";
-import { getAnunturi } from "../api_utils/dbApi";
+import EventList from "../../components/events/event-list";
+import ResultsTitle from "../../components/events/results-title";
+import Button from "../../components/ui/button";
+import ErrorAlert from "../../components/ui/error-alert";
+import { getAnunturi } from "../../api_utils/dbApi";
 
 const EventSlug = (props) => {
   const router = useRouter();
@@ -63,15 +63,7 @@ export default EventSlug;
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  var res = await fetch("https://nextjs-anunturi.vercel.app/api/anunt", {
-    method: "GET",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "User-Agent": "*",
-    },
-  });
-
-  const data = await res.json();
+  const data = await getAnunturi();
 
   const filterData = params.slug;
   const filterdYear = +filterData[0];

@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import EventSummary from "../components/event-detail/event-summary";
-import EventLogistics from "../components/event-detail/event-logistics";
-import EventContent from "../components/event-detail/event-content";
-import ErrorAlert from "../components/ui/error-alert";
-import Button from "../components/ui/button";
-import { getAnunturi } from "../api_utils/dbApi";
+import EventSummary from "../../components/event-detail/event-summary";
+import EventLogistics from "../../components/event-detail/event-logistics";
+import EventContent from "../../components/event-detail/event-content";
+import ErrorAlert from "../../components/ui/error-alert";
+import Button from "../../components/ui/button";
+import { getAnunturi } from "../../api_utils/dbApi";
 
 const EventDetail = (props) => {
   const router = useRouter();
@@ -47,15 +47,7 @@ const EventDetail = (props) => {
 export default EventDetail;
 
 export async function getStaticPaths() {
-  var res = await fetch("https://nextjs-anunturi.vercel.app/api/anunt", {
-    method: "GET",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "User-Agent": "*",
-    },
-  });
-
-  const data = await res.json();
+  const data = await getAnunturi();
 
   const pathsArr = data.map((item) => ({
     params: { eventsId: item._id },
@@ -67,15 +59,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-  var res = await fetch("https://nextjs-anunturi.vercel.app/api/anunt", {
-    method: "GET",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "User-Agent": "*",
-    },
-  });
-
-  const data = await res.json();
+  const data = await getAnunturi();
 
   return {
     props: {
