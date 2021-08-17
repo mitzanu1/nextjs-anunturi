@@ -57,44 +57,44 @@ const EventSlug = (props) => {
 
 export default EventSlug;
 
-export async function getServerSideProps(context) {
-  const { params } = context;
-  const data = await getAnunturi();
-  // const { data } = await axios.get(
-  //   "https://nextjs-anunturi.vercel.app/api/getAnunt"
-  // );
+// export async function getServerSideProps(context) {
+//   const { params } = context;
+//   const data = await getAnunturi();
+//   // const { data } = await axios.get(
+//   //   "https://nextjs-anunturi.vercel.app/api/getAnunt"
+//   // );
 
-  const filterData = params.slug;
-  const filterdYear = +filterData[0];
-  const filterdMonth = +filterData[1];
+//   const filterData = params.slug;
+//   const filterdYear = +filterData[0];
+//   const filterdMonth = +filterData[1];
 
-  if (
-    isNaN(filterdYear) ||
-    isNaN(filterdMonth) ||
-    filterdYear > 2030 ||
-    filterdYear < 2021 ||
-    filterdMonth < 1 ||
-    filterdMonth > 12
-  ) {
-    return {
-      props: { hasError: true },
-      // notFound:true,
-      // redirect: {
-      //   destination: '/error'
-      // }
-    };
-  }
+//   if (
+//     isNaN(filterdYear) ||
+//     isNaN(filterdMonth) ||
+//     filterdYear > 2030 ||
+//     filterdYear < 2021 ||
+//     filterdMonth < 1 ||
+//     filterdMonth > 12
+//   ) {
+//     return {
+//       props: { hasError: true },
+//       // notFound:true,
+//       // redirect: {
+//       //   destination: '/error'
+//       // }
+//     };
+//   }
 
-  const filterdEvents = data.filter((event) => {
-    const eventDate = new Date(event.date);
-    return (
-      eventDate.getFullYear() === filterdYear &&
-      eventDate.getMonth() === filterdMonth - 1
-    );
-  });
-  return {
-    props: {
-      events: filterdEvents,
-    },
-  };
-}
+//   const filterdEvents = data.filter((event) => {
+//     const eventDate = new Date(event.date);
+//     return (
+//       eventDate.getFullYear() === filterdYear &&
+//       eventDate.getMonth() === filterdMonth - 1
+//     );
+//   });
+//   return {
+//     props: {
+//       events: filterdEvents,
+//     },
+//   };
+// }

@@ -22,15 +22,15 @@ const EventsPage = (props) => {
 
 export default EventsPage;
 
-export async function getStaticProps() {
-  const data = await getAnunturi();
-  // const { data } = await axios.get(
-  //   "https://nextjs-anunturi.vercel.app/api/getAnunt"
-  // );
+// export async function getStaticProps() {
+//   const data = await getAnunturi();
+//   // const { data } = await axios.get(
+//   //   "https://nextjs-anunturi.vercel.app/api/getAnunt"
+//   // );
 
-  return {
-    props: {
-      events: data,
-    },
-  };
-}
+//   return {
+//     props: {
+//       events: data,
+//     },
+//   };
+// }
